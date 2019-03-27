@@ -1,0 +1,37 @@
+<html>
+
+  <head>
+    <title>Chat Demo</title>
+    <link rel="stylesheet" href="mainstyle.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="header">
+      <h2 id="room_name">OwlChat</h2>
+    </div>
+    <div id="messages" style="display: ''">
+    </div>
+    <div id="footer" style="display: ''">
+      <input type="text" id="input_message" placeholder="Write something snarky"></input>
+      <button id="input_send" onclick="ui_sendMessage()">Send</button>
+    </div>
+  </body>
+
+  <!-- Paste the code from firebase at the end of your html -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2qk8RbVcyVaUBOt4YNkLv-KbUcIR8RKg",
+      authDomain: "owlhacks2019.firebaseapp.com",
+      databaseURL: "https://owlhacks2019.firebaseio.com",
+      projectId: "owlhacks2019",
+      storageBucket: "",
+      messagingSenderId: "801944009851"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="index.js" type="text/javascript"></script>
+
+</html>

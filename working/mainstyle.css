@@ -1,0 +1,170 @@
+:root {
+  --primary-color: #9D2235;
+  --dark-gray-color: rgb(193, 198, 200, 0.5);
+  --light-gray-color: rgb(225, 225, 225, 0.3);
+  --white-color: white;
+}
+
+.bold {
+  text-decoration: underline;
+}
+
+body {
+  margin: 0px;
+  outline: none;
+  font-family: 'Archivo', sans-serif;
+}
+
+button {
+
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: var(--primary-color);
+
+  background-color: transparent;
+  color: var(--primary-color);
+  outline: none;
+
+}
+
+button:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+#header {
+  height: 10%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+#footer {
+  height: 10%;
+
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.12), 0 -1px 2px rgba(0,0,0,0.24);
+
+}
+
+#header, #footer {
+
+  width: 100%;
+
+  background-color: var(--light-gray-color);
+
+  display: flex;
+  align-items: center;
+
+}
+
+#header > input {
+  width: 350px;
+}
+
+#footer > input {
+  flex: 8;
+}
+
+#header > input, #header > h2, #footer > input {
+  color: rgb(64,64,64);
+  margin-left: 32px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#header > input, #footer > input {
+  height: 35px;
+
+  margin-left: 32px;
+
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+
+}
+
+#header > button {
+  height: 35px;
+  width: 50px;
+}
+
+#messages {
+  position: fixed;
+  top: 10%;
+  height: 80%;
+  width: 100%;
+  overflow: scroll;
+}
+
+#input_send {
+  height: 35px;
+  margin-left: 6px;
+  margin-right: 32px;
+  flex: 1;
+}
+
+.msg-l {
+  background-color: var(--dark-gray-color) !important;
+  color: #9D2235 !important;
+}
+
+.msg-r {
+    float: right !important;
+    margin-right: 24px;
+
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+#messages > div {
+
+  float: left;
+
+  height: 40px;
+  width: 51%;
+
+  margin-top: 8px;
+  margin-left: 24px;
+  margin-bottom: 8px;
+  padding: 16px;
+
+  border-radius: 24px;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.msg-r > i {
+  color: var(--white-color);
+}
+
+.msg-l > i {
+  color: var(--primary-color);
+}
+
+#messages > div > .right {
+  margin-left: auto;
+  margin-right: 8px;
+  text-align: right;
+  width: 36px;
+
+  display: flex;
+  align-content: flex-end;
+  justify-content: space-between;
+}
+
+#messages > div > span {
+  margin-left: 4px;
+  margin-right: 4px;
+}

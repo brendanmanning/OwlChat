@@ -52,8 +52,8 @@ function signOut() {
 // TODO: Implement message send -- sender is usually window.name
 function sendMessage(sender, message) {
 
-  // If we're not logged in, make the user do that
-  if(window.loggedIn == false || message == "login") {
+  // If they want to login
+  if(message == "login") {
     return signIn();
   }
 

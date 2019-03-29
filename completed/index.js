@@ -15,6 +15,16 @@ window.onload = function() {
     sendOwlBotMessage("Welcome " + window.name + " :]");
   });
 
+  // TODO: Check when another user logs in/logs out
+  /*firebase.database().ref('users').on('child_added', function(data) {
+    window.users[data.key()] = true;
+    alert(JSON.stringify(window.users));
+  });
+  firebase.database().ref('users').on('child_removed', function(data) {
+    window.users[data.key()] = true;
+    alert(JSON.stringify(window.users));
+  });*/
+
   // TODO: Check for new messages added
   firebase.database().ref('messages').on('child_added', function(data) {
     if(window.startedAt < data.val().timestamp) {
@@ -31,6 +41,18 @@ window.onload = function() {
     }
   });
 
+}
+
+// TODO: Wait for a file to be added
+function handleFiles(files) {
+  var name = rand(100000000,999999999) + "__(" + window.name + ")";
+  firebase.storage().ref().child(name).put(
+    document.getElementById('input_file').files[0]
+  ).then(function(snapshot) {
+    if(snapshot['state'] == "success") {
+      sendMessage(window.name, "/file " + name);
+    }
+  })
 }
 
 // TODO: Implement Firebase Signin
@@ -52,8 +74,8 @@ function signOut() {
 // TODO: Implement message send -- sender is usually window.name
 function sendMessage(sender, message) {
 
-  // If they want to login
-  if(message == "login") {
+  // If we're not logged in, make the user do that
+  if(window.loggedIn == false || message == "login") {
     return signIn();
   }
 
@@ -78,18 +100,26 @@ function sendOwlBotMessage(message) {
 // TODO: Implement message recieved
 function recievedMessage(sender, message) {
 
-  // Add the message to the ui
-  document.getElementById("messages").innerHTML +=
-    createMessageElement(sender, message,
-      isMe(sender) ? 'r' : 'l');
+  // Check if an image was added
+  if(message.startsWith("/file ")) {
+    firebase.storage().ref(message.substring(6)).getDownloadURL().then(function(url) {
+      document.getElementById("messages").innerHTML +=
+        createImageMessageElement(sender, url, isMe(sender) ? 'r' : 'l');
+        scrollToBottom();
+    });
+  } else {
+    // Add the message to the ui
+    document.getElementById("messages").innerHTML +=
+      createMessageElement(sender, message,
+        isMe(sender) ? 'r' : 'l');
+    scrollToBottom();
+  }
 
   // Check if the message has any bad words
   if(hasBadWords(message)) {
     sendOwlBotMessage('Hey ' + sender + '! That\'s a bad word!');
   }
 
-  var messagesContainer = document.getElementById("messages");
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 // TODO: Decide whether or not the user sent this message
@@ -140,4 +170,14 @@ function ui_sendMessage() {
 // Create a chat element
 function createMessageElement(sender, message, side) {
   return '<div ' + side + ' class="msg-' + side + '"><span class="bold">' + sender +  '</span><span>  ' + message + '</span></div>';
+}
+
+function createImageMessageElement(sender, url, side) {
+  return '<div class="msg-' + side + '" style="height: 225px; width: 51%; background-color: transparent !important;"><div style="' + ((side == 'r') ? 'margin-left: auto; margin-right: 0px; ' : '') + ' height: 225px; width: auto; padding: 8px; border-radius: 8px; background-color: gray;"><img src="' + url + '" style="border-radius: 8px; width: auto; height: 200px;"><p style="margin-top: 6px !important;">Sent by ' + sender + '</p></img></div></div>';
+}
+
+// Scroll to the bottom of the messages messages container
+function scrollToBottom() {
+  var messagesContainer = document.getElementById("messages");
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }

@@ -10,10 +10,13 @@
     <div id="header">
       <h2 id="room_name">OwlChat</h2>
     </div>
-    <div id="messages" style="display: ''">
+
+    <div id="messages" style="">
     </div>
     <div id="footer" style="display: ''">
       <input type="text" id="input_message" placeholder="Write something snarky"></input>
+      <input type="file" id="input_file" onchange="handleFiles(this.files)" style="display: none" />
+      <button id="input_file_button" onclick="document.getElementById('input_file').click();">Upload</button>
       <button id="input_send" onclick="ui_sendMessage()">Send</button>
     </div>
   </body>
@@ -27,7 +30,7 @@
       authDomain: "owlhacks2019.firebaseapp.com",
       databaseURL: "https://owlhacks2019.firebaseio.com",
       projectId: "owlhacks2019",
-      storageBucket: "",
+      storageBucket: "owlhacks2019.appspot.com",
       messagingSenderId: "801944009851"
     };
     firebase.initializeApp(config);

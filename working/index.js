@@ -5,19 +5,24 @@ window.name = window.randomname;
 
 window.onload = function() {
 
+  // (7) TODO: Check when we login/logout
   //
   //
-  //  (7) TODO: Check when we login/logout
   //
   //
-
   //
-  //
-  //  (1) TODO: Check for new messages added
   //
   //
 
-  // Allow messages to be sent by pressing the enter key
+  // (1) TODO: Check for new messages added
+  //
+  //
+  //
+  //
+  //
+  //
+
+  // Allow messages to be sent by the enter key (in addition to the send button)
   var input = document.getElementById("input_message");
   input.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -28,40 +33,40 @@ window.onload = function() {
 
 }
 
+// (9) TODO: Wait for a file to be added
+function handleFiles(files) {
+}
+
 // (5) TODO: Implement Firebase Signin
 function signIn() {
-
 }
 
 // (6) TODO: Implement Firebase SignOut
 function signOut() {
-
 }
 
-// (4) TODO: Implement message send -- sender is usually window.name
+// (2) TODO: Implement message send -- sender is usually window.name
 function sendMessage(sender, message) {
+
+  // If we're not logged in, make the user do that
+
+  // If the user asked to logout
+
+  // Otherwise, send
 
 }
 
 // (8) TODO: Implement sending a message from our "OWLBOT" friend
 function sendOwlBotMessage(message) {
-
+  // Make use of the existing call, just change the name
 }
 
-// (2) TODO: Implement message recieved
+// (3) TODO: Implement message recieved
 function recievedMessage(sender, message) {
-
-  // Add the message to the ui
-
-
-  // Scroll the messages container to the bottom
-  var messagesContainer = document.getElementById("messages");
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-// (3) TODO: Decide whether or not the user sent this message
+// (4) TODO: Decide whether or not the user sent this message
 function isMe(sender) {
-
 }
 
 // ********************************************************************************** //
@@ -107,4 +112,14 @@ function ui_sendMessage() {
 // Create a chat element
 function createMessageElement(sender, message, side) {
   return '<div ' + side + ' class="msg-' + side + '"><span class="bold">' + sender +  '</span><span>  ' + message + '</span></div>';
+}
+
+function createImageMessageElement(sender, url, side) {
+  return '<div class="msg-' + side + '" style="height: 225px; width: 51%; background-color: transparent !important;"><div style="' + ((side == 'r') ? 'margin-left: auto; margin-right: 0px; ' : '') + ' height: 225px; width: auto; padding: 8px; border-radius: 8px;"><img src="' + url + '" style="border-radius: 8px; width: auto; height: 200px;"><p style="margin-top: 6px !important;">Sent by ' + sender + '</p></img></div></div>';
+}
+
+// Scroll to the bottom of the messages messages container
+function scrollToBottom() {
+  var messagesContainer = document.getElementById("messages");
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }

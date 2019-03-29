@@ -124,6 +124,14 @@ button:hover {
     color: var(--white-color);
 }
 
+.msg-l > div {
+  background-color: var(--dark-gray-color) !important;
+}
+
+.msg-r > div {
+  background-color: var(--primary-color);
+}
+
 #messages > div {
 
   float: left;

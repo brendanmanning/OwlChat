@@ -124,11 +124,11 @@ button:hover {
     color: var(--white-color);
 }
 
-.msg-l > div > div {
+.msg-l > div {
   background-color: var(--dark-gray-color) !important;
 }
 
-.msg-r > div > div {
+.msg-r > div {
   background-color: var(--primary-color);
 }
 

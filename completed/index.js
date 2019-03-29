@@ -37,8 +37,9 @@ window.onload = function() {
 function handleFiles(files) {
   var name = rand(100000000,999999999) + "__(" + window.name + ")";
   firebase.storage().ref().child(name).put(
-    document.getElementById('input_file').files[0]
+    document.getElementById('input_file').files[0];
   ).then(function(snapshot) {
+    document.getElementById('input_file').value = null;
     if(snapshot['state'] == "success") {
       sendMessage(window.name, "/file " + name);
     }

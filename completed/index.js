@@ -15,16 +15,6 @@ window.onload = function() {
     sendOwlBotMessage("Welcome " + window.name + " :]");
   });
 
-  // TODO: Check when another user logs in/logs out
-  /*firebase.database().ref('users').on('child_added', function(data) {
-    window.users[data.key()] = true;
-    alert(JSON.stringify(window.users));
-  });
-  firebase.database().ref('users').on('child_removed', function(data) {
-    window.users[data.key()] = true;
-    alert(JSON.stringify(window.users));
-  });*/
-
   // TODO: Check for new messages added
   firebase.database().ref('messages').on('child_added', function(data) {
     if(window.startedAt < data.val().timestamp) {
@@ -75,11 +65,11 @@ function signOut() {
 function sendMessage(sender, message) {
 
   // If we're not logged in, make the user do that
-  if(window.loggedIn == false || message == "login") {
+  if(window.loggedIn == false || message.toLowerCase() == "login") {
     return signIn();
   }
 
-  if(message == "logout") {
+  if(message.toLowerCase() == "logout") {
     return signOut();
   }
 

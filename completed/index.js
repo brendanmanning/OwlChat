@@ -173,7 +173,7 @@ function createMessageElement(sender, message, side) {
 }
 
 function createImageMessageElement(sender, url, side) {
-  return '<div class="msg-' + side + '" style="height: 225px; width: 51%; background-color: transparent !important;"><div style="' + ((side == 'r') ? 'margin-left: auto; margin-right: 0px; ' : '') + ' height: 225px; width: auto; padding: 8px; border-radius: 8px; background-color: gray;"><img src="' + url + '" style="border-radius: 8px; width: auto; height: 200px;"><p style="margin-top: 6px !important;">Sent by ' + sender + '</p></img></div></div>';
+  return '<div class="msg-' + side + '" style="height: 225px; width: 51%; background-color: transparent !important;"><div style="' + ((side == 'r') ? 'margin-left: auto; margin-right: 0px; ' : '') + ' height: 225px; width: auto; padding: 8px; border-radius: 8px;"><img src="' + url + '" style="border-radius: 8px; width: auto; height: 200px;"><p style="margin-top: 6px !important;">Sent by ' + sender + '</p></img></div></div>';
 }
 
 // Scroll to the bottom of the messages messages container
